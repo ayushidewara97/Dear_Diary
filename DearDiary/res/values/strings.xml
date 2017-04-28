@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Dear Diary</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_dear_diary">DearDiary</string>
+    <string name="title_activity_dear_diary_sign_up">DearDiarySignUp</string>
+    <string name="title_activity_firstpage">Dear Diary</string>
+    <string name="title_activity_friendinfo">Dear Diary</string>
+    <string name="title_activity_friendinfo1">Friends Information</string>
+    <string name="title_activity_friend_details">FriendDetails</string>
+
+</resources>
