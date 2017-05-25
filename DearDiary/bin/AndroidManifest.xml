@@ -18,12 +18,11 @@
         <activity
             android:name="com.example.deardiary.MainActivity"
             android:label="@string/app_name" >
-           
         </activity>
-           
         <activity
             android:name="com.example.deardiary.DearDiary"
             android:label="@string/title_activity_dear_diary" >
+           
         </activity>
         <activity
             android:name="com.example.deardiary.DearDiarySignUp"
@@ -32,13 +31,12 @@
         <activity
             android:name="com.example.deardiary.Firstpage"
             android:label="@string/title_activity_firstpage" >
-            <intent-filter>
+             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-      
         <activity
             android:name="com.example.deardiary.Friendinfo"
             android:label="@string/title_activity_friendinfo" >
@@ -50,6 +48,10 @@
         <activity
             android:name="com.example.deardiary.FriendDetails"
             android:label="@string/title_activity_friend_details" >
+        </activity>
+        <activity
+            android:name="com.example.deardiary.Model"
+            android:label="@string/title_activity_model" >
         </activity>
     </application>
 

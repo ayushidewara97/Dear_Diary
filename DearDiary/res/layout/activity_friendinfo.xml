@@ -8,16 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Friendinfo" >
 
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
-
     <Button
         android:id="@+id/button1"
         android:layout_width="fill_parent"
@@ -28,27 +18,25 @@
         android:text="Add new friend info"
         android:textColor="#ffffff" />
 
-    <Button
-        android:id="@+id/button2"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/editText1"
-        android:layout_alignBottom="@+id/editText1"
-        android:layout_alignParentRight="true"
-        android:textColor="#ffffff"
-        android:background="#436eee"
-        android:text="Search" />
-
     <ListView
         android:id="@+id/listView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_alignRight="@+id/editText1" 
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="80dp">
-
+        android:layout_marginBottom="80dp"
+        android:layout_marginTop="60dp" >
     </ListView>
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:ems="10"
+        
+        android:drawableRight="@drawable/img"
+        android:text="" >
+
+        <requestFocus />
+    </AutoCompleteTextView>
 
 </RelativeLayout>

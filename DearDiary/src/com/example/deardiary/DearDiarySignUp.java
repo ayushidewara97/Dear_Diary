@@ -56,6 +56,8 @@ public class DearDiarySignUp extends Activity {
 		cv.put("answer", ans);
 		db.insert("SignupTable", null, cv);
 		Toast.makeText(this, "data successfully saved", 3000).show();
+		Intent i = new Intent(getApplicationContext(), DearDiary.class);
+		startActivity(i);
 
 	}
 	/*	

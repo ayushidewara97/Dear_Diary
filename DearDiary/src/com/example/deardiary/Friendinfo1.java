@@ -10,6 +10,7 @@ import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.InputFilter;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -41,6 +42,8 @@ public class Friendinfo1 extends Activity implements OnClickListener, OnCheckedC
 		t2 = (EditText) findViewById(R.id.editText2);
 		t3 = (EditText) findViewById(R.id.editText3);
 		t4 = (EditText) findViewById(R.id.editText4);
+		t4.setFilters( new InputFilter[] { new InputFilter.LengthFilter(10)});
+
 		t5 = (EditText) findViewById(R.id.editText5);
 		t6 = (EditText) findViewById(R.id.editText6);
 		r1 = (RadioButton) findViewById(R.id.radio1);
@@ -64,12 +67,7 @@ public class Friendinfo1 extends Activity implements OnClickListener, OnCheckedC
 		String anni = t5.getText().toString();
 		String mail = t6.getText().toString();
 		ContentValues cv = new ContentValues();
-		/*Bundle b = new Bundle();
-		Intent i1 = getIntent();
-		String key = i1.getStringExtra("uname");
-		/*rb = (RadioGroup) findViewById(R.id.radioGroup1);
-		String s1 = ((RadioButton)this.findViewById(rb.getCheckedRadioButtonId())).toString();
-		cv.put("gender", s1);*/
+		
 		String key = session.getUserDetails();
 		cv.put("name", name);
 		cv.put("address", addss);
@@ -80,16 +78,19 @@ public class Friendinfo1 extends Activity implements OnClickListener, OnCheckedC
 		cv.put("gender", gender);
 		cv.put("key", key);
 		
-		if(!emailCheck()){
+		if(!emailCheck() && !phoneField()){
 		db.insert("FriendsTable", null, cv);
 		Toast.makeText(this, "data successfully saved", 3000).show();
-		//b.putString("data1", name);
-	//	session.createLoginSession(name);
-		//session.createLoginSession(key);
-		//b.putString("data2", key);
-		Intent i = new Intent(this,Friendinfo.class);
 		
-		//i.putExtras(b);
+		Intent i = new Intent(this,Friendinfo.class);
+		i.putExtra("name", name);
+		i.putExtra("address", addss);
+		i.putExtra("birthday", bday);
+		i.putExtra("mobile_no", phone);
+		i.putExtra("anniversary", anni);
+		i.putExtra("mail", mail);
+		i.putExtra("gender", gender);
+
 		startActivity(i);
 		
 		}
@@ -102,6 +103,14 @@ public class Friendinfo1 extends Activity implements OnClickListener, OnCheckedC
 		String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 		if(mail.isEmpty()  || !mail.matches(emailPattern)){
 			t6.setError("Please enter a valid email address");
+			valid = true;
+		}
+		return valid;
+	}
+	private boolean phoneField(){
+		boolean valid=false;
+		if(t4.getText().toString().isEmpty() && t4.getText().toString().length()<10){
+			t4.setError("enter valid contactnumber");
 			valid = true;
 		}
 		return valid;
@@ -119,9 +128,9 @@ public class Friendinfo1 extends Activity implements OnClickListener, OnCheckedC
 			public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 				// TODO Auto-generated method stub
 				month++;
-				
+				if(t3.isFocused())
 				t3.setText(dayOfMonth + "/" + month+ "/" + year );
-				
+				if(t5.isFocused())
 				t5.setText(dayOfMonth + "/" + month+ "/" + year );
 
 				 				
