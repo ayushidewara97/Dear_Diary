@@ -10,5 +10,6 @@
     <string name="title_activity_friendinfo">Dear Diary</string>
     <string name="title_activity_friendinfo1">Friends Information</string>
     <string name="title_activity_friend_details">FriendDetails</string>
+    <string name="title_activity_model">Model</string>
 
 </resources>
