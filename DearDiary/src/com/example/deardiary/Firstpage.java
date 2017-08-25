@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class Firstpage extends Activity {
-	Button click;
+	Button click,_bankinfobutton;
 	TextView tv;
 	String s;
 	SessionManager session;
@@ -21,10 +21,11 @@ public class Firstpage extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_firstpage);
 		session = new SessionManager(getApplicationContext());
-		session.isLoggedIn();
-		tv = (TextView) findViewById(R.id.textView1);
+		session.checkLogin();
+		tv = (TextView) findViewById(R.id.welcometext);
 		tvBundle();
-		click = (Button) findViewById(R.id.button1);
+		click = (Button) findViewById(R.id.friendinfo_button);
+		_bankinfobutton = (Button) findViewById(R.id.bankinfo_button);
 		click.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -33,7 +34,18 @@ public class Firstpage extends Activity {
 				
 			}
 		});
+		
+		_bankinfobutton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Intent i = new Intent(getApplicationContext(), BankInfo1.class);
+				startActivity(i);
+			}
+		});
 	}
+	
+	
 	private void tvBundle(){
 		/*Intent i = getIntent();
 		s = i.getStringExtra("uname");

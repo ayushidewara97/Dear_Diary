@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:ems="10"
-        android:hint="Enter Name"
+        android:hint="@string/name"
         android:inputType="textPersonName" />
 
     <Button
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editText5"
         android:layout_alignParentBottom="true"
-        android:text="Save" />
+        android:text="@string/save" />
 
     <EditText
         android:id="@+id/editText2"
@@ -34,7 +34,7 @@
         android:layout_below="@+id/editText1"
         android:layout_marginTop="18dp"
         android:ems="10"
-        android:hint="Enter Address"
+        android:hint="@string/address"
         android:inputType="textPostalAddress" >
 
         <requestFocus />
@@ -48,7 +48,7 @@
         android:layout_alignTop="@+id/editText5"
         android:layout_marginTop="48dp"
         android:ems="10"
-        android:hint="Enter Email Address"
+        android:hint="@string/email"
         android:inputType="textEmailAddress" />
 	
 
@@ -61,7 +61,7 @@
         android:layout_marginTop="14dp"
         android:ems="10"
         android:focusable="false"
-        android:hint="Enter Birthday"
+        android:hint="@string/birthday"
         android:inputType="date" />
 
     <EditText
@@ -72,7 +72,7 @@
         android:layout_below="@+id/editText3"
         android:layout_marginTop="19dp"
         android:ems="10"
-        android:hint="Enter Mobile no."
+        android:hint="@string/mobile"
         android:inputType="phone" />
 
     <EditText
@@ -84,7 +84,7 @@
         android:layout_marginTop="18dp"
         android:ems="10"
         android:focusable="false"
-        android:hint="Enter Anniversary"
+        android:hint="@string/anniversary"
         android:inputType="date" />
 
 <RadioGroup
@@ -92,23 +92,20 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignLeft="@+id/button1"
-    android:layout_below="@+id/editText6" >
+    android:layout_below="@+id/editText6"
+    android:layout_marginTop="10dp" >
 
 
 <RadioButton
     android:id="@+id/radio1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_alignRight="@+id/editText6"
-    android:layout_below="@+id/editText6"
-    android:text="Male" />
+    android:text="@string/gender_m" />
 <RadioButton
     android:id="@+id/radio2"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_alignLeft="@+id/radioGroup1"
-    android:layout_below="@+id/radioGroup1"
-    android:text="Female" />
+    android:text="@string/gender_f" />
     
 </RadioGroup>
 

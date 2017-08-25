@@ -6,10 +6,11 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/app_bg"
     tools:context=".Firstpage" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/welcometext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -21,14 +22,33 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/bankinfo_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="50dp"
-        android:background="#9b30ff"
+        android:layout_alignLeft="@+id/friendinfo_button"
+        android:layout_below="@+id/welcometext"
+        android:background="#ff4500"
         android:textColor="#ffffff"
-        android:text="Friends Information" />
+        android:layout_marginTop="25dp"
+        android:text="Bank Information" />
+
+    <Button
+        android:id="@+id/friendinfo_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bankinfo_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:background="#9b30ff"
+        android:text="Friends Information"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/reminder_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/friendinfo_button"
+        android:layout_marginTop="25dp"
+        android:text="Set Reminder" />
 
 </RelativeLayout>

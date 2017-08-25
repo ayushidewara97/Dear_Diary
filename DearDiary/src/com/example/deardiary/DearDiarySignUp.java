@@ -2,7 +2,6 @@ package com.example.deardiary;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -55,7 +54,7 @@ public class DearDiarySignUp extends Activity {
 		cv.put("question", que);
 		cv.put("answer", ans);
 		db.insert("SignupTable", null, cv);
-		Toast.makeText(this, "data successfully saved", 3000).show();
+		Toast.makeText(this, "data successfully saved", Toast.LENGTH_LONG).show();
 		Intent i = new Intent(getApplicationContext(), DearDiary.class);
 		startActivity(i);
 

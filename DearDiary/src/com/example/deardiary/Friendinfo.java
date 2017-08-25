@@ -3,6 +3,7 @@ package com.example.deardiary;
 import java.util.ArrayList;
 
 import SessionManager.SessionManager;
+import android.R.integer;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -19,7 +20,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,11 +27,12 @@ import android.widget.Toast;
 public class Friendinfo extends Activity implements OnClickListener, OnItemClickListener {
 	Button addinfo;
 	ListView lv;
-	String s1,s2,s3,s4,s5,s6,s7;
 	AutoCompleteTextView t1;
 	ArrayList<String> n;
-	
+	//ArrayList<Integer> i;
 	String name,key;
+	DatabaseHelper dh;
+	SQLiteDatabase db;
 	SessionManager session;
 	
 	@Override
@@ -40,23 +41,56 @@ public class Friendinfo extends Activity implements OnClickListener, OnItemClick
 		setContentView(R.layout.activity_friendinfo);
 		addinfo = (Button) findViewById(R.id.button1);
 		t1 = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView1);
-		t1.setOnTouchListener(new OnTouchListener() {
-	        @Override
-	        public boolean onTouch(View v, MotionEvent event) {
-	            final int DRAWABLE_LEFT = 0;
-	            final int DRAWABLE_TOP = 1;
-	            final int DRAWABLE_RIGHT = 2;
-	            final int DRAWABLE_BOTTOM = 3;
+		
+	        
+	      
+		lv = (ListView) findViewById(R.id.listView1);	
+		session = new SessionManager(getApplicationContext());
+		session.checkLogin();
+		key = session.getUserDetails();
+		
+		addinfo.setOnClickListener(this);
+		n = new ArrayList<String>();
+		//i = new ArrayList<Integer>();
 
+		 dh = new DatabaseHelper(getApplicationContext());
+		 db = dh.getReadableDatabase();
+		String st = "select fid,name from FriendsTable where key=?";
+		Cursor c = db.rawQuery(st, new String[]{key});
+		while(c.moveToNext()){
+			//i.add(c.getInt(c.getColumnIndex("fid")));
+			n.add(c.getString(1));
+			
+		}
+		
+		// _id = i.toString().replaceAll("\\[|\\]", "").replaceAll(", ","\t");
+		 	
+		
+		CustomAdapter1 ad = new CustomAdapter1(this, R.layout.model, n);
+		ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.select_dialog_item,n);
+		t1.setAdapter(adapter);
+		t1.setThreshold(1);
+		t1.setTextColor(Color.RED);
+		lv.setAdapter(ad);
+		lv.setOnItemClickListener(this);
+		
+		/*t1.setOnTouchListener(new OnTouchListener() {
+		@Override
+		  public boolean onTouch(View v, MotionEvent event) {
+		        
 	            if(event.getAction() == MotionEvent.ACTION_UP) {
-	                if(event.getRawX() >= (t1.getRight() - t1.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-	                    // your action here
-	                	//String friendname = ((TextView)v.findViewById(R.id.textView1)).getText().toString();
-	                	Toast.makeText(getApplicationContext(), "this is working properly", 2000).show();
+	                if(event.getRawX() >= (t1.getRight() - t1.getTotalPaddingRight())) {
+	                    // your action here event.getRawX() >= txtsearch.getRight() - txtsearch.getTotalPaddingRight()
+	                	//String friendname = t1.getText().toString();
+	                	Toast.makeText(getApplicationContext(), "this is working properly", Toast.LENGTH_SHORT).show();
 
-	            		//Intent i1 = new Intent(getApplicationContext(), FriendDetails.class);
-	            		//i1.putExtra("name", friendname);
-	            		//startActivity(i1);
+	                	Bundle dataBundle = new Bundle();
+	                	dataBundle.putInt("friend_id", _id);
+	            		dataBundle.putString("key", key);	     
+	            		Intent i1 = new Intent(Friendinfo.this,FriendDetails.class);
+	            		//i1.putExtra("friend_id", _id);
+	                    i1.putExtras(dataBundle);
+	            		startActivity(i1);
 	                 return true;
 	                }
 	            }
@@ -64,32 +98,22 @@ public class Friendinfo extends Activity implements OnClickListener, OnItemClick
 	        }
 
 			
-	    });
-		lv = (ListView) findViewById(R.id.listView1);	
-		session = new SessionManager(getApplicationContext());
-		session.isLoggedIn();
-		key = session.getUserDetails();
-		
-		addinfo.setOnClickListener(this);
-		n = new ArrayList<String>();
+	    });*/
+		t1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-		DatabaseHelper dh = new DatabaseHelper(getApplicationContext());
-		SQLiteDatabase db = dh.getReadableDatabase();
-		String st = "select name from FriendsTable where key=?";
-		Cursor c = db.rawQuery(st, new String[]{key});
-		while(c.moveToNext()){
-			n.add(c.getString(0));
-			
-		}
-	
-		
-		CustomAdapter1 ad = new CustomAdapter1(this, R.layout.model, n);
-		//ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.select_dialog_item,n);
-		t1.setAdapter(ad);
-		t1.setThreshold(1);
-		t1.setTextColor(Color.RED);
-		lv.setAdapter(ad);
-		lv.setOnItemClickListener(this);
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int index,
+					long arg3) {
+				int _id = ++index;
+				Bundle dataBundle = new Bundle();
+				dataBundle.putInt("friend_id", _id);
+				dataBundle.putString("key", key);
+				Intent i1 = new Intent(Friendinfo.this,FriendDetails.class);
+				//i1.putExtra("friend_id", _id);
+		        i1.putExtras(dataBundle);
+				startActivity(i1);
+			}
+		});
 	}
 
 	@Override
@@ -104,12 +128,8 @@ public class Friendinfo extends Activity implements OnClickListener, OnItemClick
 		switch (v.getId()) {
 		case R.id.button1:
 			
-			Intent i = new Intent(getApplicationContext(), Friendinfo1.class);
-			startActivity(i);
-			break;
-		case R.id.button2:
-			Intent i1 = new Intent(getApplicationContext(),FriendDetails.class);
-			startActivity(i1);
+			Intent intent = new Intent(getApplicationContext(), Friendinfo1.class);
+			startActivity(intent);
 			break;
 
 		default:
@@ -121,12 +141,29 @@ public class Friendinfo extends Activity implements OnClickListener, OnItemClick
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View v, int index, long arg3) {
 		
-	String friendname = ((TextView)v.findViewById(R.id.textView1)).getText().toString();
+	//String friendname = ((TextView)v.findViewById(R.id.textView1)).getText().toString();
+	// _id = index + 1;
+		int _id = ++index;
+	 
+	// dh = new DatabaseHelper(getApplicationContext());
+	// db = dh.getReadableDatabase();
+	//String st = "select fid from FriendsTable where key=? AND name=?";
+	//Cursor c = db.rawQuery(st, new String[]{key,friendname});
 	
+	/*while(c.moveToNext()){
+		_id=c.getInt(c.getColumnIndex("fid"));
+		//n.add(c.getString(1));
+		
+	}*/
+		Toast.makeText(getApplicationContext(), _id+" "+index+" "+arg3+" "+n, Toast.LENGTH_LONG).show();
 
-		Intent i = new Intent(this,FriendDetails.class);
-		i.putExtra("name", friendname);
-		startActivity(i);
+		Bundle dataBundle = new Bundle();
+		dataBundle.putInt("friend_id", _id);
+		dataBundle.putString("key", key);
+		Intent i1 = new Intent(this,FriendDetails.class);
+		//i1.putExtra("friend_id", _id);
+        i1.putExtras(dataBundle);
+		startActivity(i1);
 	}
 
 	

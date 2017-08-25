@@ -20,8 +20,6 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class Friendinfo1 extends Activity implements OnClickListener, OnCheckedChangeListener {
@@ -49,7 +47,7 @@ public class Friendinfo1 extends Activity implements OnClickListener, OnCheckedC
 		r1 = (RadioButton) findViewById(R.id.radio1);
 		r2 = (RadioButton) findViewById(R.id.radio2);
 		session = new SessionManager(getApplicationContext());
-		session.isLoggedIn();
+		session.checkLogin();
 		r1.setOnCheckedChangeListener(this);
 		r2.setOnCheckedChangeListener(this);
 		save.setOnClickListener(this);
@@ -78,9 +76,9 @@ public class Friendinfo1 extends Activity implements OnClickListener, OnCheckedC
 		cv.put("gender", gender);
 		cv.put("key", key);
 		
-		if(!emailCheck() && !phoneField()){
+		if(!emailCheck() && !phoneField() && check()){
 		db.insert("FriendsTable", null, cv);
-		Toast.makeText(this, "data successfully saved", 3000).show();
+		Toast.makeText(this, "data successfully saved", Toast.LENGTH_SHORT).show();
 		
 		Intent i = new Intent(this,Friendinfo.class);
 		i.putExtra("name", name);
@@ -95,7 +93,7 @@ public class Friendinfo1 extends Activity implements OnClickListener, OnCheckedC
 		
 		}
 		else
-		Toast.makeText(getApplicationContext(), "fill correct info", 3000).show();
+		Toast.makeText(getApplicationContext(), "fill correct info", Toast.LENGTH_SHORT).show();
 	}
 	private boolean emailCheck(){
 		boolean valid=false;
@@ -115,23 +113,32 @@ public class Friendinfo1 extends Activity implements OnClickListener, OnCheckedC
 		}
 		return valid;
 	}
-	
-	public void dateset(){
+	private boolean check(){
+		if(t1.getText().toString().isEmpty())
+			t1.setError("Please enter valid name");
+		if(t2.getText().toString().isEmpty())
+			t2.setError("Please enter valid address");
+		if(t3.getText().toString().isEmpty())
+			t3.setError("Please enter valid birth-date");
+		if(t5.getText().toString().isEmpty())
+			t5.setError("Please enter valid anniversary-date");
+		return true;
 		
+	}
+	
+	public void dateBirthday(){
 		Calendar mcurrentDate=Calendar.getInstance();
-        mYear=mcurrentDate.get(Calendar.YEAR);
-        mMonth=mcurrentDate.get(Calendar.MONTH);
-        mDay=mcurrentDate.get(Calendar.DAY_OF_MONTH);
+	      mYear=mcurrentDate.get(Calendar.YEAR);
+	      mMonth=mcurrentDate.get(Calendar.MONTH);
+	      mDay=mcurrentDate.get(Calendar.DAY_OF_MONTH);	
+		
   DatePickerDialog mDatePicker=new DatePickerDialog(Friendinfo1.this,R.style.picker, new OnDateSetListener() {
-			
+	  
 			@Override
 			public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 				// TODO Auto-generated method stub
 				month++;
-				if(t3.isFocused())
 				t3.setText(dayOfMonth + "/" + month+ "/" + year );
-				if(t5.isFocused())
-				t5.setText(dayOfMonth + "/" + month+ "/" + year );
 
 				 				
 			}
@@ -143,6 +150,27 @@ public class Friendinfo1 extends Activity implements OnClickListener, OnCheckedC
 
 		
 	}
+	public void dateAnniversary(){
+		Calendar mcurrentDate=Calendar.getInstance();
+	      mYear=mcurrentDate.get(Calendar.YEAR);
+	      mMonth=mcurrentDate.get(Calendar.MONTH);
+	      mDay=mcurrentDate.get(Calendar.DAY_OF_MONTH);	
+		
+  DatePickerDialog mDatePicker=new DatePickerDialog(Friendinfo1.this,R.style.picker, new OnDateSetListener() {
+	  
+			@Override
+			public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+				// TODO Auto-generated method stub
+				month++;
+				t5.setText(dayOfMonth + "/" + month+ "/" + year );
+
+				 				
+			}
+		} , mYear, mMonth, mDay );
+        mDatePicker.setTitle("Select date");                
+        mDatePicker.show(); 		
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -157,10 +185,10 @@ public class Friendinfo1 extends Activity implements OnClickListener, OnCheckedC
 			saveData();
 			break;
 		case R.id.editText3:
-			dateset();
+			dateBirthday();
 			break;
 		case R.id.editText5:
-			dateset();
+			dateAnniversary();
 			break;
 		default:
 			break;

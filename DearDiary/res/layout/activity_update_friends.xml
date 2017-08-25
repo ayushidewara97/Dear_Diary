@@ -1,0 +1,140 @@
+<ScrollView android:fillViewport="true" 
+android:layout_height="match_parent" 
+android:layout_width="match_parent" 
+xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <TextView 
+            android:id="@+id/update_name_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:layout_marginTop="20dp"
+            />
+        
+        <EditText
+            android:id="@+id/update_name_et"
+             android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/update_name_tv"
+            android:inputType="textPersonName"/>
+        
+         <TextView 
+            android:id="@+id/update_address_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/update_name_et"
+            android:text="@string/address"
+            android:layout_marginTop="20dp"
+            
+            />
+        
+        <EditText
+            android:id="@+id/update_address_et"
+             android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/update_address_tv"
+            android:inputType="textPersonName"/>
+        
+         <TextView 
+            android:id="@+id/update_bday_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/update_address_et"
+            android:text="@string/birthday"
+            android:layout_marginTop="20dp"
+            
+            />
+        
+        <EditText
+            android:id="@+id/update_bday_et"
+             android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/update_bday_tv"
+            android:inputType="date"/>
+        
+         <TextView 
+            android:id="@+id/update_mobile_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/update_bday_et"
+            android:text="@string/mobile"
+            android:layout_marginTop="20dp"
+            
+            />
+        
+        <EditText
+            android:id="@+id/update_mobile_et"
+             android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/update_mobile_tv"
+            android:inputType="phone"/>
+        
+         <TextView 
+            android:id="@+id/update_anni_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/update_mobile_et"
+            android:text="@string/anniversary"
+            android:layout_marginTop="20dp"
+            
+            />
+        
+        <EditText
+            android:id="@+id/update_anni_et"
+             android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/update_anni_tv"
+            android:inputType="date"/>
+        
+         <TextView 
+            android:id="@+id/update_email_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/update_anni_et"
+            android:text="@string/email"
+            android:layout_marginTop="20dp"
+            
+            />
+        
+        <EditText
+            android:id="@+id/update_email_et"
+             android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/update_email_tv"
+            android:inputType="textEmailAddress"/>
+        <TextView 
+            android:id="@+id/update_gender_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/update_email_et"
+            android:text="Gender"
+            android:layout_marginTop="20dp"
+            
+            />
+        
+        <EditText
+            android:id="@+id/update_gender_et"
+             android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/update_gender_tv"
+            android:inputType="text"/>
+        
+
+        <Button
+            android:id="@+id/update_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/update_gender_et"
+            android:layout_alignParentBottom="true"
+            android:text="@string/update" 
+            />
+
+    
+</RelativeLayout>
+
+    
+  </ScrollView>
