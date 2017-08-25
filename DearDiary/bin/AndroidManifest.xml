@@ -17,21 +17,24 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.example.deardiary.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.deardiary.DearDiary"
-            android:label="@string/title_activity_dear_diary" >
-           
+            android:label="@string/title_activity_dear_diary"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.deardiary.DearDiarySignUp"
-            android:label="@string/title_activity_dear_diary_sign_up" >
+            android:label="@string/title_activity_dear_diary_sign_up"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.deardiary.Firstpage"
-            android:label="@string/title_activity_firstpage" >
-             <intent-filter>
+            android:label="@string/title_activity_firstpage"
+            android:screenOrientation="portrait" >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -39,19 +42,50 @@
         </activity>
         <activity
             android:name="com.example.deardiary.Friendinfo"
-            android:label="@string/title_activity_friendinfo" >
+            android:label="@string/title_activity_friendinfo"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.deardiary.Friendinfo1"
-            android:label="@string/title_activity_friendinfo1" >
+            android:label="@string/title_activity_friendinfo1"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.deardiary.FriendDetails"
-            android:label="@string/title_activity_friend_details" >
+            android:label="@string/title_activity_friend_details"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.deardiary.Model"
-            android:label="@string/title_activity_model" >
+            android:label="@string/title_activity_model"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.deardiary.Password_Recovery"
+            android:label="@string/title_activity_password__recovery"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.deardiary.BankInfo"
+            android:label="@string/title_activity_bank_info"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.deardiary.BankInfo1"
+            android:label="@string/title_activity_bank_info1"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.deardiary.BankDetails"
+            android:label="@string/title_activity_bank_details" >
+        </activity>
+        <activity
+            android:name="com.example.deardiary.UpdateFriends"
+            android:label="@string/title_activity_update_friends" >
+        </activity>
+        <activity
+            android:name="com.example.deardiary.Reminder"
+            android:label="@string/title_activity_reminder" >
         </activity>
     </application>
 
